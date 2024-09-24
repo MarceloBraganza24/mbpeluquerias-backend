@@ -32,10 +32,15 @@ const register = async (req, res) => {
         const registeredPartner = await partnersService.register({ ...req.body });
         await usersService.updateProp(email,"isMembershipFeePaid",true);
         const prices = await pricesService.getAll()
-        const membershipFeePrice = prices.find(price => price.price_of == "cuota socio")
+        const palabrasABuscar = ["cuota", "socio"];
+        const membershipFee = prices.find(objeto => 
+            palabrasABuscar.every(palabra => 
+                objeto.title.toLowerCase().includes(palabra.toLowerCase())
+            )
+        );
         const ticket = {
-            type: membershipFeePrice.price_of,
-            unit_price: membershipFeePrice.value_price_of,
+            type: membershipFee.title,
+            unit_price: membershipFee.value,
             payMethod: 'Efectivo/Transferencia',
             first_name: first_name,
             last_name: last_name,
