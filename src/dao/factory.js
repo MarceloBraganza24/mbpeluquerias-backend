@@ -12,6 +12,7 @@ export let About;
 export let Hairdressers;
 export let Services;
 export let WorkDays;
+export let Companies;
 
 const persistence = config.persistence;
 
@@ -32,6 +33,7 @@ switch(persistence) {
         const { default: HairdressersMongo } = await import('./dbManagers/hairdressers.manager.js');
         const { default: ServicesMongo } = await import('./dbManagers/services.manager.js');
         const { default: WorkDaysMongo } = await import('./dbManagers/workDays.manager.js');
+        const { default: CompaniesMongo } = await import('./dbManagers/companies.manager.js');
         Users = UsersMongo;
         Tickets = TicketsMongo;
         Shifts = ShiftsMongo;
@@ -44,6 +46,7 @@ switch(persistence) {
         Hairdressers = HairdressersMongo;
         Services = ServicesMongo;
         WorkDays = WorkDaysMongo;
+        Companies = CompaniesMongo;
         break;
     case 'FILE':
         /* const { default: UsersFile } = await import('./fileManagers/users.manager.js');

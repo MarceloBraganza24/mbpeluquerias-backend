@@ -25,6 +25,7 @@ import AboutRouter from "./routes/about.router.js";
 import HairdressersRouter from "./routes/hairdressers.router.js";
 import ServicesRouter from "./routes/services.router.js";
 import WorkDaysRouter from "./routes/workDays.router.js";
+import CompaniesRouter from "./routes/companies.router.js";
 
 const app = express();
 
@@ -42,6 +43,7 @@ const aboutRouter = new AboutRouter();
 const hairdressersRouter = new HairdressersRouter();
 const servicesRouter = new ServicesRouter();
 const workDaysRouter = new WorkDaysRouter();
+const companiesRouter = new CompaniesRouter();
 
 app.use(addLogger);
 app.use(express.json({ type: 'application/json' }));
@@ -80,5 +82,6 @@ app.use('/api/about', aboutRouter.getRouter());
 app.use('/api/hairdressers', hairdressersRouter.getRouter());
 app.use('/api/services', servicesRouter.getRouter());
 app.use('/api/workDays', workDaysRouter.getRouter());
+app.use('/api/companies', companiesRouter.getRouter());
 
 app.listen(config.port, () => console.log(`Server running on port ${config.port}`))
